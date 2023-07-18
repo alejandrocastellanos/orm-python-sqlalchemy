@@ -1,4 +1,4 @@
-from models.student_subject_rel import SubjectStudentRel
+from orm.models.student_subject_rel import SubjectStudentRel
 
 
 class StudentSubjectController:

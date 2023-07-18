@@ -1,9 +1,9 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
-from clients import Base, DBConnection
-from models.student import Student
-from models.subject import Subject
+from orm.clients import Base, DBConnection
+from orm.models.student import Student
+from orm.models.subject import Subject
 
 
 class SubjectStudentRel(Base):
@@ -42,6 +42,6 @@ class SubjectStudentRel(Base):
     def filter(self):
         return self.session.query(SubjectStudentRel).filter
 
-Student.invoices = relationship("SubjectStudentRel", order_by = SubjectStudentRel.id, back_populates = "student")
-Subject.invoices = relationship("SubjectStudentRel", order_by = SubjectStudentRel.id, back_populates = "subject")
-Base.metadata.create_all(DBConnection.engine)
+# Student.invoices = relationship("SubjectStudentRel", order_by = SubjectStudentRel.id, back_populates = "student")
+# Subject.invoices = relationship("SubjectStudentRel", order_by = SubjectStudentRel.id, back_populates = "subject")
+# Base.metadata.create_all(DBConnection.engine)

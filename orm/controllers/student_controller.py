@@ -1,4 +1,4 @@
-from models.student import Student
+from orm.models.student import Student
 
 
 class StudentController:

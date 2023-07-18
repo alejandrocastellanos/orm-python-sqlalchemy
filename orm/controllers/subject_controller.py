@@ -1,4 +1,4 @@
-from models.subject import Subject
+from orm.models.subject import Subject
 
 
 class SubjectController:

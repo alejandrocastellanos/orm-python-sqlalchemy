@@ -1,31 +1,29 @@
 from sqlalchemy import Column, Integer, String
 
-from clients import Base, DBConnection
+from orm.clients import Base, DBConnection
 
 
-class Student(Base):
+class Subject(Base):
 
-    db_connection = DBConnection
-    session = db_connection().session()
-    __tablename__ = 'student'
+    _db_connection = DBConnection()
+    session = _db_connection.session()
+    __tablename__ = 'subject'
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    age = Column(Integer)
 
     def create(self, **kwargs):
-        new_student = Student(
-            name=kwargs.get('name', None),
-            age=kwargs.get('age', None)
+        new_student = Subject(
+            name=kwargs.get('name', None)
         )
         self.session.add(new_student)
         self.session.commit()
 
     def get_all(self):
-        return self.session.query(Student).all()
+        return self.session.query(Subject).all()
 
     def get(self, _id: int):
-        return self.session.query(Student).get(_id)
+        return self.session.query(Subject).get(_id)
 
     def delete(self, _id):
         try:
@@ -37,6 +35,6 @@ class Student(Base):
             return False
 
     def filter(self):
-        return self.session.query(Student).filter
+        return self.session.query(Subject).filter
 
-Base.metadata.create_all(Student.db_connection.engine)
+# Base.metadata.create_all(DBConnection.engine)
